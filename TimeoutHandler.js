@@ -18,6 +18,7 @@ class TimeoutHandlerImpl {
             timeout: interval,
         };
         this._timeouts[key].autoClearTimeout = f;
+        setTimeout(f, interval);
     }
 
     clearTimeout(key: string) {
