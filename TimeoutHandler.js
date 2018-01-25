@@ -17,13 +17,12 @@ class TimeoutHandlerImpl {
             time: (new Date).getTime(),
             timeout: interval,
         };
-        this._timeouts[key].autoClearTimeout = f;
-        setTimeout(f, interval);
+        this._timeouts[key].autoClearTimeout = setTimeout(f, interval);
     }
 
     clearTimeout(key: string) {
         if (key in this._timeouts) {
-            clearTimeout(this._timeouts[key]);
+            clearTimeout(this._timeouts[key].autoClearTimeout);
             delete this._timeouts[key];
         }
     }
