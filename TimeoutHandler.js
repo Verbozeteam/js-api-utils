@@ -9,7 +9,7 @@ type TimeoutType = {
 class TimeoutHandlerImpl {
     _timeouts: {[string]: TimeoutType} = {};
 
-    createTimeout(key: string, interval: number, f: () => null) {
+    createTimeout(key: string, interval: number, f: () => any) {
         this.clearTimeout(key);
         this._timeouts[key] = {
             time: (new Date).getTime(),
