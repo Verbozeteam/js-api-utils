@@ -6,7 +6,7 @@ import { NativeModules, DeviceEventEmitter } from 'react-native';
 
 const UUID = require("uuid");
 
-import { ConfigType, DiscoveredDeviceType, SocketDataType } from '../config/ConnectionTypes'
+import { ConfigType, DiscoveredDeviceType, SocketDataType } from './ConnectionTypes';
 
 class SocketCommunication {
     _communication_token: string = "";

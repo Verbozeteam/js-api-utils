@@ -1,23 +1,21 @@
 /* @flow */
 
 type TimeoutType = {
-    [string]: {
-        time: number,
-        autoClearTimeout?: () => null,
-        timeout: number
-    }
+    time: number,
+    autoClearTimeout: any,
+    timeout: number,
 };
 
 class TimeoutHandlerImpl {
-    _timeouts: TimeoutType = {};
+    _timeouts: {[string]: TimeoutType} = {};
 
     createTimeout(key: string, interval: number, f: () => null) {
         this.clearTimeout(key);
         this._timeouts[key] = {
             time: (new Date).getTime(),
             timeout: interval,
+            autoClearTimeout: setTimeout(f, interval),
         };
-        this._timeouts[key].autoClearTimeout = setTimeout(f, interval);
     }
 
     clearTimeout(key: string) {
