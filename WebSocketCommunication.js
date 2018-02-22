@@ -91,18 +91,22 @@ class WebSocketCommunication {
     }
 
     /* set onConnected callback from external source */
-    setOnConnected(callback: () => null) {
+    setOnConnected(callback: () => void) {
         this._onConnected = callback;
     }
 
     /* set onDisconnected callback from external source */
-    setOnDisconnected(callback: () => null) {
+    setOnDisconnected(callback: () => void) {
         this._onDisconnected = callback;
     }
 
     /* set onMessage callback from external source */
-    setOnMessage(callback: (data: WebSocketDataType) => null) {
+    setOnMessage(callback: (data: WebSocketDataType) => void) {
         this._onMessage = callback;
+    }
+
+    get url(): string {
+        return this._url;
     }
 }
 
