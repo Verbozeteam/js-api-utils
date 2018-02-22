@@ -152,6 +152,10 @@ class ConfigManagerImpl {
             delete update.config;
         }
 
+        if ('__room_id' in update) {
+          delete update.__room_id;
+        }
+
         this.setThingsStates(update, false);
     }
 
