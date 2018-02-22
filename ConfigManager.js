@@ -69,6 +69,12 @@ class ConfigManagerImpl {
         this._SocketLibrary.setOnMessage(this.onMiddlewareUpdate.bind(this));
     }
 
+    reset() {
+        this.config = null;
+        this.things = {};
+        this.thingMetas = {};
+    }
+
     loadConfig1(cfg: LegacyConfigType) {
         throw "Unimplemented";
     }
@@ -214,6 +220,10 @@ class ConfigManagerImpl {
         if (this.config && this.config.rooms)
             return this.config.rooms;
         return [];
+    }
+
+    get hasConfig(): boolean {
+        return !!this.config;
     }
 };
 
