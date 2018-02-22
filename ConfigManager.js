@@ -123,6 +123,9 @@ class ConfigManagerImpl {
         }
 
         for (id in idToState) {
+            if (!(id in this.thingMetas))
+                continue;
+
             var oldThingState = JSON.stringify(this.things[id]);
             this.things[id] = {...(this.things[id] || {}), ...idToState[id]};
 
@@ -143,6 +146,7 @@ class ConfigManagerImpl {
 
     onMiddlewareUpdate(update: MiddlewareUpdateType) {
         update = JSON.parse(JSON.stringify(update));
+
         if ('config' in update) {
             this.setConfig(update.config);
             if (this.config) {
@@ -232,3 +236,4 @@ class ConfigManagerImpl {
 };
 
 export const ConfigManager = new ConfigManagerImpl();
+
