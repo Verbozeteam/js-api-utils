@@ -14,9 +14,10 @@ class WebSocketCommunication {
     _is_connected: boolean = false;
 
     /* websocket event callbacks that are set externally */
-    _onConnected: () => null = () => null;
-    _onDisconnected: () => null = () => null;
-    _onMessage: (data: WebSocketDataType) => null = (data) => null;
+    _onConnected: () => void = () => {};
+    _onDisconnected: () => void = () => {};
+    _onMessage: (data: WebSocketDataType) => void = (data) => {};
+    _onError: (err?: Object) => void = () => {};
 
     constructor() {
         /* create new UUID token to be included in every message that is sent */
@@ -29,27 +30,24 @@ class WebSocketCommunication {
 
         if (this._ws) {
             this._ws.onopen = () => {
-                console.log('WebSocketCommunication connected');
                 this._is_connected = true;
 
                 this._onConnected();
             }
 
             this._ws.onclose = () => {
-                console.log('WebSocketCommunication disconnected');
                 this._is_connected = false;
 
                 this._onDisconnected();
             }
 
             this._ws.onerror = (err) => {
-                console.log('WebSocketCommunication error:', err);
                 this._is_connected = false;
+
+                this._onError(err);
             }
 
             this._ws.onmessage = (event) => {
-                //console.log('WebSocketCommunication message:', event);
-
                 /* parse data as it may include echoed messages */
                 const data = this.parseMessage(event.data);
 
@@ -86,8 +84,10 @@ class WebSocketCommunication {
         return data;
     }
 
-    sendMessage(message: Object, deepTokenize?: boolean) {
-        if (deepTokenize) { // this makes the token embed inside every value of keys of message
+    sendMessage(message: Object, deepTokenize?: boolean = false) {
+        if (deepTokenize) {
+            /* this makes the token embedded inside every value of keys of the
+               message */
             for (var k in message) {
                 message[k].token = this._token;
             }
@@ -99,18 +99,23 @@ class WebSocketCommunication {
     }
 
     /* set onConnected callback from external source */
-    setOnConnected(callback: () => null) {
+    setOnConnected(callback: () => void) {
         this._onConnected = callback;
     }
 
     /* set onDisconnected callback from external source */
-    setOnDisconnected(callback: () => null) {
+    setOnDisconnected(callback: () => void) {
         this._onDisconnected = callback;
     }
 
     /* set onMessage callback from external source */
-    setOnMessage(callback: (data: WebSocketDataType) => null) {
+    setOnMessage(callback: (data: WebSocketDataType) => void) {
         this._onMessage = callback;
+    }
+
+    /* set onError callback from external source */
+    setOnError(callback: (err?: Object) => void) {
+        this._onError = callback;
     }
 }
 
