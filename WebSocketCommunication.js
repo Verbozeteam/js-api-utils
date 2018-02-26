@@ -26,7 +26,7 @@ class WebSocketCommunication {
 
     connect(url: string) {
         this._url = url;
-        this._ws = new WebSocket(url);
+        this._ws = new ReconnectingWebsocket(url);
 
         if (this._ws) {
             this._ws.onopen = () => {
@@ -61,7 +61,7 @@ class WebSocketCommunication {
 
     disconnect() {
         if (this._ws) {
-            this._ws.close();
+            this._ws.close({keepClosed: true, fastClose: true});
             this._ws = null;
         }
     }
