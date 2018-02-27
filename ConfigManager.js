@@ -87,6 +87,7 @@ type LegacyConfigType = {
 };
 
 class ConfigManagerImpl {
+    _onConfigReceived: () => void = () => {};
     _configChangeCallbacks: Array<ConfigChangeCallbackType> = [];
     _thingStateChangeCallbacks: {[string]: Array<ThingStateChangeCallbackType>} = {};
     _categoryStateChangeCallbacks: {[string]: Array<ThingStateChangeCallbackType>} = {};
@@ -106,6 +107,7 @@ class ConfigManagerImpl {
         this.config = null;
         this.things = {};
         this.thingMetas = {};
+        this.isLegacy = false;
     }
 
     loadConfig1(oldConfig: LegacyConfigType) {
@@ -212,6 +214,8 @@ class ConfigManagerImpl {
 
             var oldThingState = JSON.stringify(this.things[id]);
             this.things[id] = {...(this.things[id] || {}), ...idToState[id]};
+            if (this.isLegacy)
+                this.thingMetas[id] = {...idToState[id], ...(this.thingMetas[id] || {})};
 
             if (JSON.stringify(this.things[id]) !== oldThingState) {
                 var category = this.things[id].category;
@@ -234,6 +238,7 @@ class ConfigManagerImpl {
         if ('config' in update) {
             this.setConfig(update.config);
             if (this.config) {
+                this._onConfigReceived();
                 for (var c = 0; c < this._configChangeCallbacks.length; c++)
                     this._configChangeCallbacks[c](this.config);
             }
@@ -317,7 +322,10 @@ class ConfigManagerImpl {
     get hasConfig(): boolean {
         return !!this.config;
     }
+
+    setOnConfigReceived(callback: () => void) {
+        this._onConfigReceived = callback;
+    }
 };
 
 export const ConfigManager = new ConfigManagerImpl();
-
