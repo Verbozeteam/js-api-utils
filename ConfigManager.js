@@ -1,5 +1,7 @@
 /* @flow */
 
+const I18n = require('./i18n/i18n');
+
 export type ThingStateType = Object;
 
 export type ThingMetadataType = {
@@ -49,9 +51,39 @@ export type ConfigChangeCallbackType = (ConfigType) => any;
 
 export type ThingStateChangeCallbackType = (ThingMetadataType, ThingStateType) => any;
 
-export type LegacyConfigType = {
+type LegacyNameType = {
+    en: string,
+    ar: string,
+};
+
+type LegacyGenericThingType = {
     id: string,
-    rooms: Array<RoomType>,
+    category: string,
+    name: LegacyNameType,
+};
+
+type LegacyPanelType = {
+    ratio: number, // row height ratio within column
+    name: LegacyNameType, // panel name
+    things: Array<LegacyGenericThingType>,
+    presets?: Array<Object>, // array of presets, each one is a dictionary of <thing-id> -> <state>
+};
+
+type LegacyGridColumnType = {
+    ratio: number,
+    panels: Array<LegacyPanelType>
+};
+
+type LegacyRoomType = {
+    name: LegacyNameType, // room name
+    grid: Array<LegacyGridColumnType>,
+    detail: Object,
+    layout: Object,
+};
+
+type LegacyConfigType = {
+    id?: string,
+    rooms: Array<LegacyRoomType>,
 };
 
 class ConfigManagerImpl {
@@ -63,6 +95,7 @@ class ConfigManagerImpl {
     config: ?ConfigType = null;
     things: {[string] : ThingStateType} = {};
     thingMetas: {[string] : ThingMetadataType} = {};
+    isLegacy: boolean = false;
 
     initialize(socketLibrary: Object) {
         this._SocketLibrary = socketLibrary;
@@ -75,12 +108,55 @@ class ConfigManagerImpl {
         this.thingMetas = {};
     }
 
-    loadConfig1(cfg: LegacyConfigType) {
-        throw "Unimplemented";
+    loadConfig1(oldConfig: LegacyConfigType) {
+        var translations: TranslationsType = {};
+
+        var flatten = (lists: Array<Array<any>>) => [].concat.apply([], lists);
+
+        var convertThing: LegacyGenericThingType => ThingMetadataType
+                = t => {
+            if (t.name && t.name.en)
+                translations[t.name.en] = {...t.name};
+            return {
+                id: t.id,
+                name: t.name ? t.name.en : "",
+                category: t.category,
+            };
+        };
+
+        var convertPanelToGroup: (p: LegacyPanelType, index: number) => GroupType
+                = (p: LegacyPanelType, index: number) => {
+            if (p.name && p.name.en)
+                translations[p.name.en] = {...p.name};
+            return {
+                id: "group-"+index,
+                name: (p.name ? p.name.en : undefined) || ("Group " + (index+1)),
+                things: p.things.map(convertThing),
+                presets: p.presets,
+            };
+        };
+
+        var convertRoom: (r: LegacyRoomType, index: number) => RoomType
+                = (r: LegacyRoomType, index: number) => {
+            if (r.name && r.name.en)
+                translations[r.name.en] = {...r.name};
+            return {
+                id: "room-"+index,
+                name: (r.name ? r.name.en : undefined) || ("Room " + (index+1)),
+                groups: flatten(r.grid.map(g => g.panels)).map(convertPanelToGroup),
+            };
+        };
+
+        this.loadConfig2({
+            id: oldConfig.id || "1",
+            rooms: oldConfig.rooms.map(convertRoom),
+            translations: translations,
+        });
+        this.isLegacy = true;
     }
 
     loadConfig2(cfg: ConfigType) {
-        this.config = JSON.parse(JSON.stringify(cfg));
+        this.config = cfg;
         this.things = {};
         this.thingMetas = {};
         for (var r = 0; r < this.config.rooms.length; r++) {
@@ -91,20 +167,28 @@ class ConfigManagerImpl {
                     this.thingMetas[group.things[t].id] = group.things[t];
             }
         }
+        this.isLegacy = false;
     }
 
     setConfig(cfg: ConfigType) {
+        this.reset();
+
         try {
             this.loadConfig2(cfg);
         } catch (e1) {
             console.log("Middleware config not latest");
             try {
-                this.loadConfig1(cfg);
+                this.loadConfig1(JSON.parse(JSON.stringify(cfg)));
+                console.log("Loaded legacy config");
             } catch (e2) {
                 console.log("Middleware config not supported ", e1, e2);
                 console.log(cfg);
             }
         }
+
+        if (this.config.translations)
+            for (var k in this.config.translations)
+                I18n.addTranslations(this.config.translations[k]);
     }
 
     setThingState(id: string, partialState: Object, send_socket: boolean) {

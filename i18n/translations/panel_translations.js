@@ -11,6 +11,14 @@ export const panel_translations = {
         en: 'Do Not Disturb',
         ar: 'عدم الإزعاج',
     },
+    'HOUSEKEEPING': {
+        en: 'HOUSEKEEPING',
+        ar: 'خدمة الغرفة',
+    },
+    'DO NOT DISTURB': {
+        en: 'DO NOT DISTURB',
+        ar: 'عدم الإزعاج',
+    },
     'Presets': {
         en: 'Presets',
         ar: 'إعدادات مسبقة',
@@ -22,5 +30,17 @@ export const panel_translations = {
     'All': {
         en: 'All',
         ar: 'الجميع',
+    },
+    'ALL': {
+        en: 'ALL',
+        ar: 'الجميع',
+    },
+    'On': {
+        en: 'On',
+        ar: 'مشغل',
+    },
+    'ON': {
+        en: 'ON',
+        ar: 'مشغل',
     }
 };
