@@ -24,6 +24,16 @@ class WebSocketCommunication {
         this._token = UUID.v4();
     }
 
+    get url(): string {
+      return this._url;
+    }
+
+    reset() {
+      this.disconnect();
+      this._token = UUID.v4();
+      this._url = '';
+    }
+
     connect(url: string) {
         this._url = url;
         this._ws = new ReconnectingWebsocket(url);
