@@ -12,6 +12,7 @@ class WebSocketCommunication {
     _ws: ?Object = null;
     _url: string = '';
     _is_connected: boolean = false;
+    _things_state_buffer: Object = {};
 
     /* websocket event callbacks that are set externally */
     _onConnected: () => void = () => {};
@@ -25,13 +26,17 @@ class WebSocketCommunication {
     }
 
     get url(): string {
-      return this._url;
+        return this._url;
+    }
+
+    get is_connected(): boolean {
+        return this._is_connected;
     }
 
     reset() {
-      this.disconnect();
-      this._token = UUID.v4();
-      this._url = '';
+        this._url = '';
+        this.disconnect();
+        this._token = UUID.v4();
     }
 
     connect(url: string) {
@@ -41,6 +46,8 @@ class WebSocketCommunication {
         if (this._ws) {
             this._ws.onopen = () => {
                 this._is_connected = true;
+
+                this.flushThingsStateBuffer();
 
                 this._onConnected();
             }
@@ -71,7 +78,7 @@ class WebSocketCommunication {
 
     disconnect() {
         if (this._ws) {
-            this._ws.close({keepClosed: true, fastClose: true});
+            this._ws.close(1000, '', {keepClosed: true, fastClose: true});
             this._ws = null;
         }
     }
@@ -94,18 +101,49 @@ class WebSocketCommunication {
         return data;
     }
 
+    addToThingsStateBuffer(message: Object) {
+        console.log('addToThingsStateBuffer', message);
+        if ('thing' in message) {
+            this._things_state_buffer[message.thing] = message;
+        }
+    }
+
+    flushThingsStateBuffer() {
+        console.log('flushThingsStateBuffer', this._things_state_buffer);
+        const state: Array<Object> = Object.values(this._things_state_buffer);
+
+        for (var i = 0; i < state.length; i++) {
+            this.sendMessage(state[i]);
+        }
+
+        this._things_state_buffer = {};
+    }
+
     sendMessage(message: Object, deepTokenize?: boolean = false) {
+        console.log('sendMessage', message);
+
         if (deepTokenize) {
-            /* this makes the token embedded inside every value of keys of the
-               message */
+            /* this makes the token embedded inside every value of
+               keys of the message */
             for (var k in message) {
                 message[k].token = this._token;
             }
-        } else
+        } else {
             message.token = this._token;
+        }
 
-        if (this._ws)
-            this._ws.send(JSON.stringify(message));
+        if (!this._ws || !this._is_connected) {
+            /* WebSocket not yet connected - buffer message instead */
+            this.addToThingsStateBuffer(message);
+        }
+
+        else if (this._is_connected) {
+            try {
+                this._ws.send(JSON.stringify(message));
+            } catch (err) {
+                console.log(err);
+            }
+        }
     }
 
     /* set onConnected callback from external source */
