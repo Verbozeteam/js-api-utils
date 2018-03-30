@@ -47,4 +47,12 @@ export const central_ac_translations = {
         en: 'Set temperature',
         ar: 'ضبط الحرارة'
     },
+    'Fan': {
+        en: 'Fan',
+        ar: 'المروحة',
+    },
+    'FAN': {
+        en: 'FAN',
+        ar: 'المروحة',
+    }
 };
