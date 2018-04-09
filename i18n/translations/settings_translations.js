@@ -11,8 +11,8 @@ export const settings_translations = {
         en: 'Loading...',
         ar: 'تحميل...'
     },
-    'Scan from Verboze app': {
-        en: 'Scan from Verboze app',
+    'Scan from Verboze Mobile app': {
+        en: 'Scan from Verboze Mobile app',
         ar: 'صور من تطبيق فربوز'
     },
 };

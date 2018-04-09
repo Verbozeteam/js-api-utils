@@ -15,6 +15,10 @@ export const central_ac_translations = {
         en: 'HI',
         ar: 'عالي'
     },
+    'Hi': {
+        en: 'Hi',
+        ar: 'عالي'
+    },
     'Medium': {
         en: 'Medium',
         ar: 'متوسط'
@@ -23,12 +27,20 @@ export const central_ac_translations = {
         en: 'MED',
         ar: 'متوسط'
     },
+    'Med': {
+        en: 'Med',
+        ar: 'متوسط'
+    },
     'Low': {
         en: 'Low',
         ar: 'منخفض'
     },
     'LO': {
         en: 'LO',
+        ar: 'منخفض'
+    },
+    'Lo': {
+        en: 'Lo',
         ar: 'منخفض'
     },
     'Room Temperature': {

@@ -15,6 +15,10 @@ export const panel_translations = {
         en: 'HOUSEKEEPING',
         ar: 'خدمة الغرفة',
     },
+    'Housekeeping': {
+        en: 'Housekeeping',
+        ar: 'خدمة الغرفة',
+    },
     'DO NOT DISTURB': {
         en: 'DO NOT DISTURB',
         ar: 'عدم الإزعاج',
