@@ -1,11 +1,11 @@
 export const central_ac_translations = {
     'Off': {
         en: 'Off',
-        ar: 'مُطفئ'
+        ar: 'مُطفأ'
     },
     'OFF': {
         en: 'OFF',
-        ar: 'مُطفئ'
+        ar: 'مُطفأ'
     },
     'High': {
         en: 'High',
