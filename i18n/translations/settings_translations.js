@@ -13,6 +13,6 @@ export const settings_translations = {
     },
     'Scan from Verboze Mobile app': {
         en: 'Scan from Verboze Mobile app',
-        ar: 'صور من تطبيق فربوز'
+        ar: 'صوّر من تطبيق فربوز'
     },
 };
