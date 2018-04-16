@@ -57,7 +57,7 @@ export const central_ac_translations = {
     },
     'Set Temperature': {
         en: 'Set temperature',
-        ar: 'ضبط الحرارة'
+        ar: 'الحرارة المرغوبة'
     },
     'Fan': {
         en: 'Fan',
