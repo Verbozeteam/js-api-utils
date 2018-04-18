@@ -218,7 +218,7 @@ class ConfigManagerImpl {
                 this.thingMetas[id] = {...idToState[id], ...(this.thingMetas[id] || {})};
 
             if (JSON.stringify(this.things[id]) !== oldThingState) {
-                var category = this.things[id].category;
+                var category = this.thingMetas[id].category || this.things[id].category;
 
                 if (id in this._thingStateChangeCallbacks) {
                     for (var i = 0; i < this._thingStateChangeCallbacks[id].length; i++)
