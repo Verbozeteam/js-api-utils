@@ -84,5 +84,9 @@ export const clock_translations = {
     ', ': {
         en: ', ',
         ar: '، '
+    },
+    'Please insert the room card to use.': {
+        en: 'Please insert the room card to use.',
+        ar: 'الرجاء إدخال بطاقة الغرفة للإستخدام'
     }
 };
