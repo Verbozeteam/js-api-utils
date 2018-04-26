@@ -10,8 +10,31 @@ class I18n {
     _language: string = 'en';
     _language_direction = 'left_to_right';
 
-    _supported_languages = ['en', 'ar'];
-    _supported_languages_directions = ['left_to_right', 'right_to_left'];
+    _supported_languages = [];
+    _supported_languages_directions = {
+        en: 'left_to_right', /* English */
+        ru: 'left_to_right', /* Russian */
+        de: 'left_to_right', /* German  */
+        zh: 'left_to_right', /* Chinese */
+        ar: 'right_to_left', /* Arabic  */
+    }
+
+    getSupportedLanguages() {
+        var supported_languages = {};
+        /* Loop through all translated words */
+        for (var key of Object.keys(this._translations)) {
+            const word = this._translations[key];
+            /* Loop through different translations for word */
+            for (var key2 of Object.keys(word)) {
+                /* Add language abbreviation if not added before */
+                if (!(key2 in supported_languages)) {
+                    supported_languages[key2] = true;
+                }
+            }
+        }
+
+        return Object.keys(supported_languages);
+    }
 
     constructor() {
         this._translations = {
@@ -20,6 +43,9 @@ class I18n {
             ...central_ac_translations,
             ...settings_translations
         };
+
+        this._supported_languages = this.getSupportedLanguages();
+
     }
 
     addTranslations(word: Object) {
@@ -44,7 +70,7 @@ class I18n {
             const index = this._supported_languages.indexOf(language);
             if (index !== -1) {
                 this._language = language;
-                this._language_direction = this._supported_languages_directions[index];
+                this._language_direction = this._supported_languages_directions[language];
                 return language;
             }
         }
