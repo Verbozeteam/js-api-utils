@@ -7,79 +7,98 @@ export const clock_translations = {
     },
     'Sunday': {
         en: 'Sunday',
-        ar: 'الأحد'
+        ar: 'الأحد',
+        ru: 'Воскресенье'
     },
     'Monday': {
         en: 'Monday',
-        ar: 'الإثنين'
+        ar: 'الإثنين',
+        ru: 'Понедельник'
     },
     'Tuesday': {
         en: 'Tuesday',
-        ar: 'الثلاثاء'
+        ar: 'الثلاثاء',
+        ru: 'Вторник'
     },
     'Wednesday': {
         en: 'Wednesday',
-        ar: 'الأربعاء'
+        ar: 'الأربعاء',
+        ru: 'Среда'
     },
     'Thursday': {
         en: 'Thursday',
-        ar: 'الخميس'
+        ar: 'الخميس',
+        ru: 'Четверг'
     },
     'Friday': {
         en: 'Friday',
-        ar: 'الجمعة'
+        ar: 'الجمعة',
+        ru: 'Пятница'
     },
     'Saturday': {
         en: 'Saturday',
-        ar: 'السبت'
+        ar: 'السبت',
+        ru: 'Суббота'
     },
     'January': {
         en: 'January',
-        ar: 'يناير'
+        ar: 'يناير',
+        ru: 'Январь'
     },
     'February': {
         en: 'February',
-        ar: 'فبراير'
+        ar: 'فبراير',
+        ru: 'Февраль'
     },
     'March': {
         en: 'March',
-        ar: 'مارس'
+        ar: 'مارس',
+        ru: 'Март'
     },
     'April': {
         en: 'April',
-        ar: 'أبريل'
+        ar: 'أبريل',
+        ru: 'Апрель'
     },
     'May': {
         en: 'May',
-        ar: 'مايو'
+        ar: 'مايو',
+        ru: 'Май'
     },
     'June': {
         en: 'June',
-        ar: 'يونيو'
+        ar: 'يونيو',
+        ru: 'Июнь'
     },
     'July': {
         en: 'July',
-        ar: 'يوليو'
+        ar: 'يوليو',
+        ru: 'Июль'
     },
     'August': {
         en: 'August',
-        ar: 'أغسطس'
+        ar: 'أغسطس',
+        ru: 'Август'
     },
     'October': {
         en: 'October',
-        ar: 'اكتوبر'
+        ar: 'اكتوبر',
+        ru: 'Октябрь'
     },
     'November': {
         en: 'November',
-        ar: 'نوفمبر'
+        ar: 'نوفمبر',
+        ru: 'Ноябрь'
     },
     'December': {
         en: 'December',
-        ar: 'ديسمبر'
+        ar: 'ديسمبر',
+        ru: 'Декабрь'
     },
     'Today': {
         en: 'Today',
-        ar: 'اليوم'
+        ar: 'اليوم',
+        ru: 'Сегодня'
     },
     ', ': {
         en: ', ',
@@ -87,6 +106,7 @@ export const clock_translations = {
     },
     'Please insert the room card to use.': {
         en: 'Please insert the room card to use.',
-        ar: 'الرجاء إدخال بطاقة الغرفة للإستخدام'
+        ar: 'الرجاء إدخال بطاقة الغرفة للإستخدام',
+        ru: 'Пожалуйста вставьте комнатную карту для пользования системой.'
     }
 };
