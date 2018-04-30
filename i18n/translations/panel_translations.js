@@ -59,5 +59,21 @@ export const panel_translations = {
         en: 'ON',
         ar: 'مشغل',
         ru: 'ВКЛ'
-    }
+    },
+    'Open Ceiling': {
+        en: 'Open Ceiling',
+        ar: 'فتح السقف',
+    },
+    'Close Ceiling': {
+        en: 'Close Ceiling',
+        ar: 'إغلاق السقف',
+    },
+    'Fog': {
+        en: 'Fog',
+        ar: 'ضباب',
+    },
+    'Lights': {
+        en: 'Lights',
+        ar: 'إضاءة',
+    },
 };
