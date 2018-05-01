@@ -72,6 +72,10 @@ export const panel_translations = {
         en: 'Fog',
         ar: 'ضباب',
     },
+    'Exhaust': {
+        en: 'Exhaust',
+        ar: 'مروحة العادم',
+    },
     'Lights': {
         en: 'Lights',
         ar: 'إضاءة',
