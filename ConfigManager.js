@@ -188,9 +188,10 @@ class ConfigManagerImpl {
             }
         }
 
+        I18n.resetTranslations();
         if (this.config.translations)
             for (var k in this.config.translations)
-                I18n.addTranslations(this.config.translations[k]);
+                I18n.addTranslations(k, this.config.translations[k]);
     }
 
     setThingState(id: string, partialState: Object, send_socket: boolean, cache_state: boolean) {

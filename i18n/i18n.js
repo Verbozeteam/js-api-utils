@@ -10,7 +10,7 @@ class I18n {
     _language: string = 'en';
     _language_direction = 'left_to_right';
 
-    _supported_languages = [];
+    _supported_languages = {};
     _supported_languages_directions = {
         en: 'left_to_right', /* English */
         ru: 'left_to_right', /* Russian */
@@ -19,24 +19,7 @@ class I18n {
         ar: 'right_to_left', /* Arabic  */
     }
 
-    getSupportedLanguages() {
-        var supported_languages = {};
-        /* Loop through all translated words */
-        for (var key of Object.keys(this._translations)) {
-            const word = this._translations[key];
-            /* Loop through different translations for word */
-            for (var key2 of Object.keys(word)) {
-                /* Add language abbreviation if not added before */
-                if (!(key2 in supported_languages)) {
-                    supported_languages[key2] = true;
-                }
-            }
-        }
-
-        return Object.keys(supported_languages);
-    }
-
-    constructor() {
+    resetTranslations() {
         this._translations = {
             ...clock_translations,
             ...panel_translations,
@@ -44,31 +27,37 @@ class I18n {
             ...settings_translations
         };
 
-        this._supported_languages = this.getSupportedLanguages();
-
+        this._supported_languages = {};
     }
 
-    addTranslations(word: Object) {
-        if (!word) {
+    addSupportedLanguages(translations: Object) {
+        for (var lang in translations) {
+            this._supported_languages[lang] = true;
+        }
+    }
+
+    constructor() {
+        this.resetTranslations();
+    }
+
+    addTranslations(title: string, translations: Object) {
+        if (!translations) {
             return;
         }
 
-        if ('en' in word) {
-            var prev = {};
-            if (word.en in this._translations) {
-                prev = this._translations[word.en];
-            }
-            this._translations[word.en] = Object.assign(
-                prev,
-                word
-            );
-        }
+        var prev = this._translations[title] || {};
+        this._translations[title] = {
+            ...prev,
+            ...translations
+        };
+
+        this.addSupportedLanguages(translations);
     }
 
-    setLanguage(language?: string): string {
+    setLanguage(language?: string) {
         if (language) {
-            const index = this._supported_languages.indexOf(language);
-            if (index !== -1) {
+            const exists = this._supported_languages[language] || null;
+            if (exists !== null) {
                 this._language = language;
                 this._language_direction = this._supported_languages_directions[language];
                 return language;
