@@ -199,34 +199,38 @@ class ConfigManagerImpl {
         return this.setThingsStates({[id]: partialState}, send_socket);
     }
 
-    setThingsStates(idToState: Object, send_socket: boolean) {
+    setThingsStates(idToState: Object, send_socket: boolean, cache_state: boolean) {
         if (send_socket === undefined)
             send_socket = true;
+        if (cache_state === undefined)
+            cache_state = true;
 
         if (send_socket) {
             for (var id in idToState)
-                this._SocketLibrary.sendMessage({...{thing: id}, ...idToState[id]});
+                this._SocketLibrary.sendMessage({...{thing: id}, ...idToState[id]}, false, cache_state);
         }
 
-        for (id in idToState) {
-            if (!(id in this.thingMetas))
-                continue;
+        if (cache_state) {
+            for (id in idToState) {
+                if (!(id in this.thingMetas))
+                    continue;
 
-            var oldThingState = JSON.stringify(this.things[id]);
-            this.things[id] = {...(this.things[id] || {}), ...idToState[id]};
-            if (this.isLegacy)
-                this.thingMetas[id] = {...idToState[id], ...(this.thingMetas[id] || {})};
+                var oldThingState = JSON.stringify(this.things[id]);
+                this.things[id] = {...(this.things[id] || {}), ...idToState[id]};
+                if (this.isLegacy)
+                    this.thingMetas[id] = {...idToState[id], ...(this.thingMetas[id] || {})};
 
-            if (JSON.stringify(this.things[id]) !== oldThingState) {
-                var category = this.thingMetas[id].category || this.things[id].category;
+                if (JSON.stringify(this.things[id]) !== oldThingState) {
+                    var category = this.thingMetas[id].category || this.things[id].category;
 
-                if (id in this._thingStateChangeCallbacks) {
-                    for (var i = 0; i < this._thingStateChangeCallbacks[id].length; i++)
-                        this._thingStateChangeCallbacks[id][i](this.thingMetas[id], this.things[id]);
-                }
-                if (category in this._categoryStateChangeCallbacks) {
-                    for (var i = 0; i < this._categoryStateChangeCallbacks[category].length; i++)
-                        this._categoryStateChangeCallbacks[category][i](this.thingMetas[id], this.things[id]);
+                    if (id in this._thingStateChangeCallbacks) {
+                        for (var i = 0; i < this._thingStateChangeCallbacks[id].length; i++)
+                            this._thingStateChangeCallbacks[id][i](this.thingMetas[id], this.things[id]);
+                    }
+                    if (category in this._categoryStateChangeCallbacks) {
+                        for (var i = 0; i < this._categoryStateChangeCallbacks[category].length; i++)
+                            this._categoryStateChangeCallbacks[category][i](this.thingMetas[id], this.things[id]);
+                    }
                 }
             }
         }
