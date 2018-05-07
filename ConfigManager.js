@@ -193,10 +193,10 @@ class ConfigManagerImpl {
                 I18n.addTranslations(this.config.translations[k]);
     }
 
-    setThingState(id: string, partialState: Object, send_socket: boolean) {
+    setThingState(id: string, partialState: Object, send_socket: boolean, cache_state: boolean) {
         if (send_socket === undefined)
             send_socket = true;
-        return this.setThingsStates({[id]: partialState}, send_socket);
+        return this.setThingsStates({[id]: partialState}, send_socket, cache_state);
     }
 
     setThingsStates(idToState: Object, send_socket: boolean, cache_state: boolean) {
