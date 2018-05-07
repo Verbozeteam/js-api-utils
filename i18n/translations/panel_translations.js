@@ -2,63 +2,74 @@ export const panel_translations = {
     'Minimize': {
         en: 'Minimize',
         ar: 'إغلاق',
-        ru: 'Минимизоровать'
+        ru: 'Минимизоровать',
+        de: 'Minimieren'
     },
     'Room Service': {
         en: 'Room Service',
         ar: 'خدمة الغرفة',
-        ru: 'Сервис Номера'
+        ru: 'Сервис Номера',
+        de: 'Zimmerservice'
     },
     'Do Not Disturb': {
         en: 'Do Not Disturb',
         ar: 'عدم الإزعاج',
-        ru: 'Не Беспокоить'
+        ru: 'Не Беспокоить',
+        de: 'Bitte nicht stören'
     },
     'HOUSEKEEPING': {
         en: 'HOUSEKEEPING',
         ar: 'خدمة الغرفة',
-        ru: 'УБОРКА'
+        ru: 'УБОРКА',
+        de: 'HAUSWIRTSCHAFT'
     },
     'Housekeeping': {
         en: 'Housekeeping',
         ar: 'خدمة الغرفة',
-        ru: 'Уборка'
+        ru: 'Уборка',
+        de: 'Hauswirtschaft'
     },
     'DO NOT DISTURB': {
         en: 'DO NOT DISTURB',
         ar: 'عدم الإزعاج',
-        ru: 'НЕ БЕСПОКОИТЬ'
+        ru: 'НЕ БЕСПОКОИТЬ',
+        de: 'BITTE NICHT STÖREN'
     },
     'Presets': {
         en: 'Presets',
         ar: 'إعدادات مسبقة',
-        ru: 'Предустановки'
+        ru: 'Предустановки',
+        de: 'Voreingestellte Einstellungen'
     },
     'Room Temperature is': {
         en: 'Room Temperature is',
         ar: 'حرارة الغرفة:',
-        ru: 'Температура комнаты -'
+        ru: 'Температура комнаты -',
+        de: 'Die Raumtemperatur beträgt'
     },
     'All': {
         en: 'All',
         ar: 'الجميع',
-        ru: 'Все'
+        ru: 'Все',
+        de: 'Alle'
     },
     'ALL': {
         en: 'ALL',
         ar: 'الجميع',
-        ru: 'ВСЕ'
+        ru: 'ВСЕ',
+        de: 'ALLE'
     },
     'On': {
         en: 'On',
         ar: 'مشغل',
-        ru: 'Вкл'
-
+        ru: 'Вкл',
+        de: 'An'
     },
     'ON': {
         en: 'ON',
         ar: 'مشغل',
-        ru: 'ВКЛ'
+        ru: 'ВКЛ',
+        de: 'AN'
     },
     'Open Ceiling': {
         en: 'Open Ceiling',
