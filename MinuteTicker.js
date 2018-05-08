@@ -1,6 +1,6 @@
 /* @flow */
 
-class MinuteTickerImpl {
+export default class MinuteTicker {
   _callback: () => {} = () => {};
 
   _expected_time: number = 0;
@@ -42,7 +42,3 @@ class MinuteTickerImpl {
     clearTimeout(this._timeout);
   }
 }
-
-module.exports = {
-  MinuteTicker: new MinuteTickerImpl()
-};
