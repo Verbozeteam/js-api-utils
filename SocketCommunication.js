@@ -58,7 +58,7 @@ class SocketCommunication {
     }
 
     handleDeviceDiscovered(device: DiscoveredDeviceType) {
-        device.port = 7990; // TODO: This is all patch work.
+        device.port = parseInt(device.data) ||  7990;
         this._onDeviceDiscovered(device);
     }
 
