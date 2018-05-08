@@ -10,41 +10,56 @@ class I18n {
     _language: string = 'en';
     _language_direction = 'left_to_right';
 
-    _supported_languages = ['en', 'ar'];
-    _supported_languages_directions = ['left_to_right', 'right_to_left'];
+    _supported_languages = {};
+    _supported_languages_directions = {
+        en: 'left_to_right', /* English */
+        ru: 'left_to_right', /* Russian */
+        de: 'left_to_right', /* German  */
+        zh: 'left_to_right', /* Chinese */
+        ar: 'right_to_left', /* Arabic  */
+    }
 
-    constructor() {
+    resetTranslations() {
         this._translations = {
             ...clock_translations,
             ...panel_translations,
             ...central_ac_translations,
             ...settings_translations
         };
+
+        this._supported_languages = {};
     }
 
-    addTranslations(word: Object) {
-        if (!word) {
+    addSupportedLanguages(translations: Object) {
+        for (var lang in translations) {
+            this._supported_languages[lang] = true;
+        }
+    }
+
+    constructor() {
+        this.resetTranslations();
+    }
+
+    addTranslations(title: string, translations: Object) {
+        if (!translations) {
             return;
         }
 
-        if ('en' in word) {
-            var prev = {};
-            if (word.en in this._translations) {
-                prev = this._translations[word.en];
-            }
-            this._translations[word.en] = Object.assign(
-                prev,
-                word
-            );
-        }
+        var prev = this._translations[title] || {};
+        this._translations[title] = {
+            ...prev,
+            ...translations
+        };
+
+        this.addSupportedLanguages(translations);
     }
 
-    setLanguage(language?: string): string {
+    setLanguage(language?: string) {
         if (language) {
-            const index = this._supported_languages.indexOf(language);
-            if (index !== -1) {
+            const exists = this._supported_languages[language] || null;
+            if (exists !== null) {
                 this._language = language;
-                this._language_direction = this._supported_languages_directions[index];
+                this._language_direction = this._supported_languages_directions[language];
                 return language;
             }
         }

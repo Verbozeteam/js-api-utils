@@ -62,8 +62,18 @@ class SocketCommunication {
         this._onDeviceDiscovered(device);
     }
 
-    sendMessage(msg: Object) {
-        msg.token = this._communication_token;
+    sendMessage(msg: Object, deepTokenize?: boolean = false, add_token?: boolean = true) {
+        if (add_token) {
+            if (deepTokenize) {
+                /* this makes the token embedded inside every value of
+                keys of the message */
+                for (var k in msg) {
+                    msg[k].token = this._communication_token;
+                }
+            } else {
+                msg.token = this._communication_token;
+            }
+        }
         NativeModules.Socket.write(JSON.stringify(msg));
     }
 

@@ -119,17 +119,19 @@ class WebSocketCommunication {
         this._things_state_buffer = {};
     }
 
-    sendMessage(message: Object, deepTokenize?: boolean = false) {
+    sendMessage(message: Object, deepTokenize?: boolean = false, add_token?: boolean = true) {
         console.log('sendMessage', message);
 
-        if (deepTokenize) {
-            /* this makes the token embedded inside every value of
-               keys of the message */
-            for (var k in message) {
-                message[k].token = this._token;
+        if (add_token) {
+            if (deepTokenize) {
+                /* this makes the token embedded inside every value of
+                keys of the message */
+                for (var k in message) {
+                    message[k].token = this._token;
+                }
+            } else {
+                message.token = this._token;
             }
-        } else {
-            message.token = this._token;
         }
 
         if (!this._ws || !this._is_connected) {

@@ -7,82 +7,132 @@ export const clock_translations = {
     },
     'Sunday': {
         en: 'Sunday',
-        ar: 'الأحد'
+        ar: 'الأحد',
+        ru: 'Воскресенье',
+        de: 'Sonntag'
     },
     'Monday': {
         en: 'Monday',
-        ar: 'الإثنين'
+        ar: 'الإثنين',
+        ru: 'Понедельник',
+        de: 'Montag'
     },
     'Tuesday': {
         en: 'Tuesday',
-        ar: 'الثلاثاء'
+        ar: 'الثلاثاء',
+        ru: 'Вторник',
+        de: 'Dienstag'
     },
     'Wednesday': {
         en: 'Wednesday',
-        ar: 'الأربعاء'
+        ar: 'الأربعاء',
+        ru: 'Среда',
+        de: 'Mittwoch'
     },
     'Thursday': {
         en: 'Thursday',
-        ar: 'الخميس'
+        ar: 'الخميس',
+        ru: 'Четверг',
+        de: 'Donnerstag'
     },
     'Friday': {
         en: 'Friday',
-        ar: 'الجمعة'
+        ar: 'الجمعة',
+        ru: 'Пятница',
+        de: 'Freitag'
     },
     'Saturday': {
         en: 'Saturday',
-        ar: 'السبت'
+        ar: 'السبت',
+        ru: 'Суббота',
+        de: 'Samstag'
     },
     'January': {
         en: 'January',
-        ar: 'يناير'
+        ar: 'يناير',
+        ru: 'Январь',
+        de: 'Januar'
     },
     'February': {
         en: 'February',
-        ar: 'فبراير'
+        ar: 'فبراير',
+        ru: 'Февраль',
+        de: 'Februar'
     },
     'March': {
         en: 'March',
-        ar: 'مارس'
+        ar: 'مارس',
+        ru: 'Март',
+        de: 'März'
     },
     'April': {
         en: 'April',
-        ar: 'أبريل'
+        ar: 'أبريل',
+        ru: 'Апрель',
+        de: 'April',
     },
     'May': {
         en: 'May',
-        ar: 'مايو'
+        ar: 'مايو',
+        ru: 'Май',
+        de: 'Mai'
     },
     'June': {
         en: 'June',
-        ar: 'يونيو'
+        ar: 'يونيو',
+        ru: 'Июнь',
+        de: 'Juni'
     },
     'July': {
         en: 'July',
-        ar: 'يوليو'
+        ar: 'يوليو',
+        ru: 'Июль',
+        de: 'Juli'
     },
     'August': {
         en: 'August',
-        ar: 'أغسطس'
+        ar: 'أغسطس',
+        ru: 'Август',
+        de: 'August'
+    },
+    'September': {
+        en: 'September',
+        ar: 'سبتمبر',
+        ru: 'Сентябрь',
+        de: 'September'
     },
     'October': {
         en: 'October',
-        ar: 'اكتوبر'
+        ar: 'اكتوبر',
+        ru: 'Октябрь',
+        de: 'Oktober'
     },
     'November': {
         en: 'November',
-        ar: 'نوفمبر'
+        ar: 'نوفمبر',
+        ru: 'Ноябрь',
+        de: 'November'
     },
     'December': {
         en: 'December',
-        ar: 'ديسمبر'
+        ar: 'ديسمبر',
+        ru: 'Декабрь',
+        de: 'Dezember'
     },
     'Today': {
         en: 'Today',
-        ar: 'اليوم'
+        ar: 'اليوم',
+        ru: 'Сегодня',
+        de: 'Heute'
     },
     ', ': {
         en: ', ',
         ar: '، '
+    },
+    'Please insert the room card to use.': {
+        en: 'Please insert the room card to use.',
+        ar: 'الرجاء إدخال بطاقة الغرفة للإستخدام',
+        ru: 'Пожалуйста вставьте комнатную карту для пользования системой.',
+        de: 'Bitte legen Sie die zu verwendende Zimmerkarte ein.'
     }
 };
