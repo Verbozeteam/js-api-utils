@@ -3,73 +3,85 @@ export const panel_translations = {
         en: 'Minimize',
         ar: 'إغلاق',
         ru: 'Минимизоровать',
-        de: 'Minimieren'
+        de: 'Minimieren',
+        zh: '最小化'
     },
     'Room Service': {
         en: 'Room Service',
         ar: 'خدمة الغرفة',
         ru: 'Сервис Номера',
-        de: 'Zimmerservice'
+        de: 'Zimmerservice',
+        zh: '客房服务'
     },
     'Do Not Disturb': {
         en: 'Do Not Disturb',
         ar: 'عدم الإزعاج',
         ru: 'Не Беспокоить',
-        de: 'Bitte nicht stören'
+        de: 'Bitte nicht stören',
+        zh: '请勿打扰'
     },
     'HOUSEKEEPING': {
         en: 'HOUSEKEEPING',
         ar: 'خدمة الغرفة',
         ru: 'УБОРКА',
-        de: 'HAUSWIRTSCHAFT'
+        de: 'HAUSWIRTSCHAFT',
+        zh: '客房清洁'
     },
     'Housekeeping': {
         en: 'Housekeeping',
         ar: 'خدمة الغرفة',
         ru: 'Уборка',
-        de: 'Hauswirtschaft'
+        de: 'Hauswirtschaft',
+        zh: '客房清洁'
     },
     'DO NOT DISTURB': {
         en: 'DO NOT DISTURB',
         ar: 'عدم الإزعاج',
         ru: 'НЕ БЕСПОКОИТЬ',
-        de: 'BITTE NICHT STÖREN'
+        de: 'BITTE NICHT STÖREN',
+        zh: '请勿打扰'
     },
     'Presets': {
         en: 'Presets',
         ar: 'إعدادات مسبقة',
         ru: 'Предустановки',
-        de: 'Voreingestellte Einstellungen'
+        de: 'Voreingestellte Einstellungen',
+        zh: '预定义设置'
     },
     'Room Temperature is': {
         en: 'Room Temperature is',
         ar: 'حرارة الغرفة:',
         ru: 'Температура комнаты -',
-        de: 'Die Raumtemperatur beträgt'
+        de: 'Die Raumtemperatur beträgt',
+        zh: '室温为'
     },
     'All': {
         en: 'All',
         ar: 'الجميع',
         ru: 'Все',
-        de: 'Alle'
+        de: 'Alle',
+        zh: '所有'
     },
     'ALL': {
         en: 'ALL',
         ar: 'الجميع',
         ru: 'ВСЕ',
-        de: 'ALLE'
+        de: 'ALLE',
+        zh: '所有'
     },
     'On': {
         en: 'On',
         ar: 'مشغل',
         ru: 'Вкл',
-        de: 'An'
+        de: 'An',
+        zh: '灯亮'
     },
     'ON': {
         en: 'ON',
         ar: 'مشغل',
         ru: 'ВКЛ',
-        de: 'AN'
+        de: 'AN',
+        zh: '灯亮'
     },
     'Open Ceiling': {
         en: 'Open Ceiling',
