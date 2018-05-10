@@ -1,12 +1,12 @@
 /* @flow */
 
 export default class MinuteTicker {
-  _callback: () => {} = () => {};
+  _callback: (datetime: Object) => {} = () => {};
 
   _expected_time: number = 0;
   _timeout: Object = null;
 
-  start(callback: (minutes: number) => {}) {
+  start(callback: (datetime: Object) => {}) {
     this._callback = callback;
     clearTimeout(this._timeout);
 
@@ -30,7 +30,7 @@ export default class MinuteTicker {
     const minutes = Math.max(1, 1 + Math.round(delta / 60000));
 
     /* call the callback */
-    this._callback(minutes);
+    this._callback(new Date(this._expected_time));
 
     /* set up timeout till start of next minute */
     this._expected_time += 60000 * minutes;
