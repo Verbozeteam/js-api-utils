@@ -8,7 +8,7 @@ const UUID = require("uuid");
 
 import { ConfigType, DiscoveredDeviceType, SocketDataType } from './ConnectionTypes';
 
-class SocketCommunication {
+class SocketCommunicationClass {
     _communication_token: string = "";
     _currently_connected_ip: string = "";
     _currently_connected_port: number = 0;
@@ -106,4 +106,9 @@ class SocketCommunication {
     }
 };
 
-module.exports = new SocketCommunication();
+const SocketCommunication = new SocketCommunicationClass();
+
+module.exports = {
+    SocketCommunication,
+    SocketCommunicationClass,
+};
