@@ -29,7 +29,6 @@ class SocketCommunicationClass {
         var sPrefix = useSecondary ? "secondary_" : ""; // prefix for callback names (secondary_* if using secondary connection)
 
         this._SocketModule.initialize();
-        console.log(this._SocketModule)
 
         this._subscriptions.concat(DeviceEventEmitter.addListener(this._SocketModule.manager_log, (data) => {
             console.log(data.data);
