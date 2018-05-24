@@ -11,7 +11,7 @@ export const minutesDifference = (t1: Object, t2: Object) => {
 }
 
 export const addAlarm =
-  (alarms_id: string, ConfigManager: Object, alarm: Object, alarms: Array<AlarmType>) => {
+  (alarms_id: string, ConfigManager: Object, alarm: AlarmType, alarms: Array<AlarmType>) => {
 
     /* if array of alarms passed, will check that no other duplicate alarm exists */
     if (typeof alarms !== 'undefined') {
@@ -52,4 +52,15 @@ export const snoozeAlarm =
   /* remove alarm and add new snoozed alarm */
   removeAlarm(alarms_id, ConfigManager, alarm);
   addAlarm(alarms_id, ConfigManager, {time: snoozeAlarmTime});
+};
+
+export const ringAlarm =
+  (alarms_id: string, ConfigManager: Object, alarm: AlarmType) => {
+
+  /* set alarm to ringing */
+  ConfigManager.setThingState(
+    alarms_id,
+    {'ring_alarm': alarm.id},
+    true, false
+  );
 };
