@@ -17,7 +17,7 @@ export const panel_translations = {
         en: 'Do Not Disturb',
         ar: 'عدم الإزعاج',
         ru: 'Не Беспокоить',
-        de: 'Bitte nicht stören',
+        de: 'Bitte Nicht Stören',
         zh: '请勿打扰'
     },
     'HOUSEKEEPING': {
@@ -31,7 +31,7 @@ export const panel_translations = {
         en: 'Housekeeping',
         ar: 'خدمة الغرفة',
         ru: 'Уборка',
-        de: 'Bitte das Zimmer aufräumen',
+        de: 'Bitte Das Zimmer Aufräumen',
         zh: '客房清洁'
     },
     'DO NOT DISTURB': {
