@@ -45,35 +45,35 @@ export const central_ac_translations = {
         en: 'MED',
         ar: 'متوسط',
         ru: 'СРЕД',
-        de: 'MITTLERE',
+        de: 'MITTEL',
         zh: '中'
     },
     'Med': {
         en: 'Med',
         ar: 'متوسط',
         ru: 'Сред',
-        de: 'Mittlere',
+        de: 'Mittel',
         zh: '中'
     },
     'Low': {
         en: 'Low',
         ar: 'منخفض',
         ru: 'Низкая',
-        de: 'Niedrige',
+        de: 'Niedrig',
         zh: '低'
     },
     'LO': {
         en: 'LO',
         ar: 'منخفض',
         ru: 'НИЗК',
-        de: 'NIEDRIGE',
+        de: 'NIEDRIG',
         zh: '低'
     },
     'Lo': {
         en: 'Lo',
         ar: 'منخفض',
         ru: 'Низк',
-        de: 'Niedrige',
+        de: 'Niedrig',
         zh: '低'
     },
     'Room Temperature': {
@@ -94,7 +94,7 @@ export const central_ac_translations = {
         en: 'Room Temp',
         ar: 'حرارة الغرفة',
         ru: 'Комн Темп',
-        de: 'Zimmertemperatur',
+        de: 'Zimmertemp.',
         zh: '室内温度'
     },
     'Set Temperature': {

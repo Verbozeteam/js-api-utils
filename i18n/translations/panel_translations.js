@@ -24,14 +24,14 @@ export const panel_translations = {
         en: 'HOUSEKEEPING',
         ar: 'خدمة الغرفة',
         ru: 'УБОРКА',
-        de: 'HAUSWIRTSCHAFT',
+        de: 'BITTE DAS ZIMMER AUFRÄUMEN',
         zh: '客房清洁'
     },
     'Housekeeping': {
         en: 'Housekeeping',
         ar: 'خدمة الغرفة',
         ru: 'Уборка',
-        de: 'Hauswirtschaft',
+        de: 'Bitte das Zimmer aufräumen',
         zh: '客房清洁'
     },
     'DO NOT DISTURB': {
@@ -52,7 +52,7 @@ export const panel_translations = {
         en: 'Room Temperature is',
         ar: 'حرارة الغرفة:',
         ru: 'Температура комнаты -',
-        de: 'Die Raumtemperatur beträgt',
+        de: 'Zimmertemperatur beträgt',
         zh: '室温为'
     },
     'All': {

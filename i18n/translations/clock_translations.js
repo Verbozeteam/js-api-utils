@@ -160,7 +160,7 @@ export const clock_translations = {
         en: 'Please insert the room card to use.',
         ar: 'الرجاء إدخال بطاقة الغرفة للإستخدام',
         ru: 'Пожалуйста вставьте комнатную карту для пользования системой.',
-        de: 'Bitte legen Sie die zu verwendende Zimmerkarte ein.',
+        de: 'Bitte verwenden Sie die Zimmerkarte um das Tablet zu aktivieren.',
         zh: '请插入要使用的房卡。'
     },
     'Alarm': {
