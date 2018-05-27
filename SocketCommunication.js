@@ -8,7 +8,9 @@ const UUID = require("uuid");
 
 import { ConfigType, DiscoveredDeviceType, SocketDataType } from './ConnectionTypes';
 
-class SocketCommunication {
+class SocketCommunicationClass {
+    _SocketModule: any = null;
+
     _communication_token: string = "";
     _currently_connected_ip: string = "";
     _currently_connected_port: number = 0;
@@ -18,26 +20,41 @@ class SocketCommunication {
     _onMessage: (d: SocketDataType) => any = (d) => {};
     _onDeviceDiscovered: (d: DiscoveredDeviceType) => any = (d) => {};
 
-    initialize() {
+    _subscriptions = [];
+
+    initialize(useSecondary: boolean) {
         this._communication_token = UUID.v4();
 
-        DeviceEventEmitter.addListener(NativeModules.Socket.manager_log, (data) => {
+        this._SocketModule = !useSecondary ? NativeModules.MainSocket : NativeModules.SecondarySocket;
+        var sPrefix = useSecondary ? "secondary_" : ""; // prefix for callback names (secondary_* if using secondary connection)
+
+        this._SocketModule.initialize();
+
+        this._subscriptions.concat(DeviceEventEmitter.addListener(this._SocketModule.manager_log, (data) => {
             console.log(data.data);
-        });
+        }));
 
-        DeviceEventEmitter.addListener(NativeModules.Socket.socket_connected, this.handleSocketConnected.bind(this));
+        this._subscriptions.concat(DeviceEventEmitter.addListener(this._SocketModule[sPrefix+"socket_connected"], this.handleSocketConnected.bind(this)));
 
-        DeviceEventEmitter.addListener(NativeModules.Socket.socket_data, ((data: Object) => {
+        this._subscriptions.concat(DeviceEventEmitter.addListener(this._SocketModule[sPrefix+"socket_data"], ((data: Object) => {
             this.handleSocketData(JSON.parse(data.data));
-        }).bind(this));
+        }).bind(this)));
 
-        DeviceEventEmitter.addListener(NativeModules.Socket.socket_disconnected, this.handleSocketDisconnected.bind(this));
+        this._subscriptions.concat(DeviceEventEmitter.addListener(this._SocketModule[sPrefix+"socket_disconnected"], this.handleSocketDisconnected.bind(this)));
 
-        DeviceEventEmitter.addListener(NativeModules.Socket.device_discovered, this.handleDeviceDiscovered.bind(this));
+        this._subscriptions.concat(DeviceEventEmitter.addListener(this._SocketModule[sPrefix+"device_discovered"], this.handleDeviceDiscovered.bind(this)));
     }
 
     cleanup() {
-        NativeModules.Socket.killThread();
+        this._SocketModule.killThread();
+        this._SocketModule = null;
+        for (var i = 0; i < this._subscriptions.length; i++)
+            this._subscriptions[i].remove();
+        this._subscriptions = [];
+        this._onConnected = () => {};
+        this._onDisconnected = () => {};
+        this._onMessage = (d) => {};
+        this._onDeviceDiscovered = (d) => {};
     }
 
     handleSocketConnected() {
@@ -74,18 +91,18 @@ class SocketCommunication {
                 msg.token = this._communication_token;
             }
         }
-        NativeModules.Socket.write(JSON.stringify(msg));
+        this._SocketModule.write(JSON.stringify(msg));
     }
 
     discoverDevices() {
-        NativeModules.Socket.discoverDevices();
+        this._SocketModule.discoverDevices();
     }
 
     connect(ip: string, port: number) {
         if (ip != this._currently_connected_ip || port != this._currently_connected_port) {
             this._currently_connected_ip = ip;
             this._currently_connected_port = port;
-            NativeModules.Socket.connect(ip, port);
+            this._SocketModule.connect(ip, port);
         }
     }
 
@@ -106,4 +123,9 @@ class SocketCommunication {
     }
 };
 
-module.exports = new SocketCommunication();
+const SocketCommunication = new SocketCommunicationClass();
+
+module.exports = {
+    SocketCommunication,
+    SocketCommunicationClass,
+};

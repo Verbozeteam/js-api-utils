@@ -86,7 +86,7 @@ type LegacyConfigType = {
     rooms: Array<LegacyRoomType>,
 };
 
-class ConfigManagerImpl {
+class ConfigManagerClass {
     _onConfigReceived: () => void = () => {};
     _configChangeCallbacks: Array<ConfigChangeCallbackType> = [];
     _thingStateChangeCallbacks: {[string]: Array<ThingStateChangeCallbackType>} = {};
@@ -333,4 +333,9 @@ class ConfigManagerImpl {
     }
 };
 
-export const ConfigManager = new ConfigManagerImpl();
+const ConfigManager = new ConfigManagerClass();
+
+module.exports = {
+    ConfigManager,
+    ConfigManagerClass,
+};
