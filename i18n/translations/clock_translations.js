@@ -174,7 +174,7 @@ export const clock_translations = {
         en: 'Add Alarm',
         ar: 'اضف منبه',
         ru: 'Добавить будильник',
-        de: 'Alarm hinzufügen',
+        de: 'Alarm Hinzufügen',
         zh: '添加闹钟'
     },
     'Snooze 5 Minutes': {
@@ -188,7 +188,7 @@ export const clock_translations = {
         en: 'Stop Alarm',
         ar: 'وقف المنبه',
         ru: 'Остановить будильник',
-        de: 'Stoppen Sie den Wecker',
+        de: 'Stoppen Sie Den Wecker',
         zh: '停止闹钟'
     }
 };
