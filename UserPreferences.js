@@ -60,6 +60,22 @@ class UserPreferences {
             console.log('AsyncStorage error:', error);
         }
     }
+
+    async flush() {
+        this._user_preferences = {};
+
+        try {
+            await AsyncStorage.setItem('_user_preferences', JSON.stringify({}), (err) => {
+                if (err)
+                    console.log('Error flushing user preferences');
+                else {
+                    console.log('Successfully flushed user preferences');
+                }
+            });
+        } catch (error) {
+            console.log('AsyncStorage error:', error);
+        }
+    }
 }
 
 module.exports = new UserPreferences();
