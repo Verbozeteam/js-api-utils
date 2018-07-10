@@ -102,14 +102,14 @@ class WebSocketCommunication {
     }
 
     addToThingsStateBuffer(message: Object) {
-        console.log('addToThingsStateBuffer', message);
+        // console.log('addToThingsStateBuffer', message);
         if ('thing' in message) {
             this._things_state_buffer[message.thing] = message;
         }
     }
 
     flushThingsStateBuffer() {
-        console.log('flushThingsStateBuffer', this._things_state_buffer);
+        // console.log('flushThingsStateBuffer', this._things_state_buffer);
         const state: Array<Object> = Object.values(this._things_state_buffer);
 
         for (var i = 0; i < state.length; i++) {
@@ -120,7 +120,7 @@ class WebSocketCommunication {
     }
 
     sendMessage(message: Object, deepTokenize?: boolean = false, add_token?: boolean = true) {
-        console.log('sendMessage', message);
+        // console.log('sendMessage', message);
 
         if (add_token) {
             if (deepTokenize) {

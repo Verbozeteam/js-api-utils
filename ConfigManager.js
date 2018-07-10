@@ -40,6 +40,7 @@ export type ConfigType = {
     id: string,
     rooms: Array<RoomType>,
     translations: ?TranslationsType,
+    display: ?Object
 };
 
 export type MiddlewareUpdateType = {
