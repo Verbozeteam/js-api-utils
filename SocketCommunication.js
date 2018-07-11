@@ -24,6 +24,8 @@ class SocketCommunicationClass {
     _authenticationData: AuthenticationData = {
         token: null,
         password: null,
+        username: 'Control Tablet',
+        token_type: 1,
     };
 
     _middleware_certificate: string =
