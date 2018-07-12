@@ -154,6 +154,7 @@ class ConfigManagerClass {
             id: oldConfig.id || "1",
             rooms: oldConfig.rooms.map(convertRoom),
             translations: translations,
+            display: {},
         });
         this.isLegacy = true;
     }

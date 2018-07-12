@@ -50,7 +50,7 @@ class SocketCommunicationClass {
     _onDisconnected: () => any = () => {};
     _onMessage: (d: SocketDataType) => any = (d) => {};
     _onDeviceDiscovered: (d: DiscoveredDeviceType) => any = (d) => {};
-    _onRequireAuthentication: () => null = () => null;
+    _onRequireAuthentication: boolean => null = b => null;
 
     _subscriptions = [];
 
@@ -112,7 +112,7 @@ class SocketCommunicationClass {
             // authentication failed!
             this._authenticationData.token = null;
             this._SocketModule.stopConnecting();
-            this._onRequireAuthentication();
+            this._onRequireAuthentication(true);
             return;
         }
 
@@ -145,6 +145,10 @@ class SocketCommunicationClass {
 
     setAuthenticationToken(token) {
         this._authenticationData.token = token;
+        if (token && token.length > 0) {
+            this._onRequireAuthentication(false);
+            this._SocketModule.startConnecting();
+        }
     }
 
     setAuthenticationPassword(pw) {
@@ -189,7 +193,7 @@ class SocketCommunicationClass {
         this._onDeviceDiscovered = on_device;
     }
 
-    setOnRequireAuthentication(on_auth: () => null) {
+    setOnRequireAuthentication(on_auth: boolean => null) {
         this._onRequireAuthentication = on_auth;
     }
 };
