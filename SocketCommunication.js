@@ -75,6 +75,8 @@ class SocketCommunicationClass {
         this._subscriptions.concat(DeviceEventEmitter.addListener(this._SocketModule[sPrefix+"socket_disconnected"], this.handleSocketDisconnected.bind(this)));
 
         this._subscriptions.concat(DeviceEventEmitter.addListener(this._SocketModule[sPrefix+"device_discovered"], this.handleDeviceDiscovered.bind(this)));
+
+        this._subscriptions.concat(DeviceEventEmitter.addListener(this._SocketModule[sPrefix+"log_sent"], this.handleLogSent.bind(this)));
     }
 
     cleanup() {
@@ -122,6 +124,10 @@ class SocketCommunicationClass {
     handleDeviceDiscovered(device: DiscoveredDeviceType) {
         device.port = parseInt(device.data) ||  7990;
         this._onDeviceDiscovered(device);
+    }
+
+    handleLogSent(log: string) {
+        console.log(log);
     }
 
     sendMessage(msg: Object, deepTokenize?: boolean = false, add_token?: boolean = true) {
