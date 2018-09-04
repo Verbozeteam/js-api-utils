@@ -35,6 +35,12 @@ class WebSocketCommunication {
 
     reset() {
         this._url = '';
+        if (this._ws) {
+            this._ws.onopen = () => {};
+            this._ws.onmessage = (event) => {};
+            this._ws.onclose = () => {};
+            this._ws.onerror = (err) => {};
+        }
         this.disconnect();
         this._token = UUID.v4();
     }
