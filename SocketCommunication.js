@@ -164,6 +164,10 @@ class SocketCommunicationClass {
         return this._authenticationData.token;
     }
 
+    startConnecting() {
+        this._SocketModule.startConnecting();
+    }
+
     setSSLKey(key, cert, password) {
         this._SocketModule.setSSLKey(key, (cert ? cert : "") + "\n" + this._middleware_certificate, password);
         this._isUsingSSL = true;
@@ -173,14 +177,16 @@ class SocketCommunicationClass {
         this._isUsingSSL = false;
     }
 
-    connect(ip: string, port: number) {
+    connect(ip: string, port: number): boolean {
         if (ip != this._currently_connected_ip || port != this._currently_connected_port || this._currently_connected_ssl_state != this._isUsingSSL) {
             this._currently_connected_ip = ip;
             this._currently_connected_port = port;
             this._currently_connected_ssl_state = this._isUsingSSL;
             this._SocketModule.startConnecting();
             this._SocketModule.connect(ip, port, this._isUsingSSL);
+            return true;
         }
+        return false
     }
 
     setOnConnected(conn: () => any) {
