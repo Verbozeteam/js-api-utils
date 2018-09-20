@@ -191,9 +191,14 @@ class ConfigManagerClass {
         }
 
         I18n.resetTranslations();
-        if (this.config.translations)
+        if (this.config.translations) {
             for (var k in this.config.translations)
                 I18n.addTranslations(k, this.config.translations[k]);
+        }
+        /* no translation provided in config -- fallback to English */
+        else {
+            I18n.addSupportedLanguages({'en': true})
+        }
     }
 
     setThingState(id: string, partialState: Object, send_socket: boolean, cache_state: boolean) {
