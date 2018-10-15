@@ -93,13 +93,15 @@ class ConfigManagerClass {
     _thingStateChangeCallbacks: {[string]: Array<ThingStateChangeCallbackType>} = {};
     _categoryStateChangeCallbacks: {[string]: Array<ThingStateChangeCallbackType>} = {};
     _SocketLibrary: Object;
+    _customSendFunc: ?((Object, ?boolean, ?boolean) => any) = null;
 
     config: ?ConfigType = null;
     things: {[string] : ThingStateType} = {};
     thingMetas: {[string] : ThingMetadataType} = {};
     isLegacy: boolean = false;
 
-    initialize(socketLibrary: Object) {
+    initialize(socketLibrary: Object, customSendFunction: ?(Object => any)) {
+        this._customSendFunc = customSendFunction;
         this._SocketLibrary = socketLibrary;
         this._SocketLibrary.setOnMessage(this.onMiddlewareUpdate.bind(this));
     }
@@ -209,8 +211,10 @@ class ConfigManagerClass {
             cache_state = true;
 
         if (send_socket) {
-            for (var id in idToState)
-                this._SocketLibrary.sendMessage({...{thing: id}, ...idToState[id]}, false, cache_state);
+            for (var id in idToState) {
+                (this._customSendFunc ? this._customSendFunc : this._SocketLibrary.sendMessage)
+                    ({...{thing: id}, ...idToState[id]}, false, cache_state);
+            }
         }
 
         if (cache_state) {
