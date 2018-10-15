@@ -212,8 +212,10 @@ class ConfigManagerClass {
 
         if (send_socket) {
             for (var id in idToState) {
-                (this._customSendFunc ? this._customSendFunc : this._SocketLibrary.sendMessage)
-                    ({...{thing: id}, ...idToState[id]}, false, cache_state);
+                if (this._customSendFunc)
+                    this._customSendFunc({...{thing: id}, ...idToState[id]}, false, cache_state);
+                else
+                    this._SocketLibrary.sendMessage({...{thing: id}, ...idToState[id]}, false, cache_state);
             }
         }
 
