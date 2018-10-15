@@ -6,6 +6,18 @@ export const panel_translations = {
         de: 'Minimieren',
         zh: '最小化'
     },
+    'Room': {
+        en: 'Room',
+        ar: 'الغرفة',
+    },
+    'Amenities': {
+        en: 'Amenities',
+        ar: 'الخدمات'
+    },
+    'Telephone': {
+        en: 'Telephone',
+        ar: 'الهاتف'
+    },
     'Room Service': {
         en: 'Room Service',
         ar: 'خدمة الغرفة',
@@ -103,4 +115,40 @@ export const panel_translations = {
         en: 'Lights',
         ar: 'إضاءة',
     },
+    'Curtains': {
+        en: 'Curtains',
+        ar: 'ستائر',
+    },
+    'Climate': {
+        en: 'Climate',
+        ar: 'التكييف',
+    },
+    'Open': {
+        en: 'Open',
+        ar: 'إفتح',
+    },
+    'Opening': {
+        en: 'Opening',
+        ar: 'جاري الفتح',
+    },
+    'Close': {
+        en: 'Close',
+        ar: 'أغلق',
+    },
+    'Closing': {
+        en: 'Closing',
+        ar: 'جاري الإغلاق',
+    },
+    'Welcome': {
+        en: 'Welcome',
+        ar: 'مرحباً',
+    },
+    'The temperature in the room is': {
+        en: 'The temperature in the room is',
+        ar: 'حرارة الغرفة:',
+    },
+    'Please insert the room\'s key card': {
+        en: 'Please insert the room\'s key card',
+        ar: 'الرجاء إدخال بطاقة الغرفة',
+    }
 };

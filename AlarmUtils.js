@@ -1,8 +1,8 @@
 /* @flow */
 
-type AlarmType = {
-  id: number,
-  time: string
+export type AlarmType = {
+  id?: number,
+  time: Date
 };
 
 export const minutesDifference = (t1: Object, t2: Object) => {
@@ -11,7 +11,7 @@ export const minutesDifference = (t1: Object, t2: Object) => {
 }
 
 export const addAlarm =
-  (alarms_id: string, ConfigManager: Object, alarm: AlarmType, alarms: Array<AlarmType>) => {
+  (alarms_id: string, ConfigManager: Object, alarm: AlarmType, alarms?: Array<AlarmType>) => {
 
     /* if array of alarms passed, will check that no other duplicate alarm exists */
     if (typeof alarms !== 'undefined') {

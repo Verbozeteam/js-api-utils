@@ -117,5 +117,41 @@ export const central_ac_translations = {
         ru: 'ВЕНТИЛЯТОР',
         de: 'VENTILATOR',
         zh: '风扇'
+    },
+    'AC Is On': {
+        en: 'AC Is On',
+        ar: 'المكيف مشغل',
+    },
+    'AC Is Off': {
+        en: 'AC Is Off',
+        ar: 'المكيف مُطفأ',
+    },
+    'Temperature:': {
+        en: 'Temperature:',
+        ar: 'حرارة الغرفة:',
+    },
+    'No one will disturb you': {
+        en: 'No one will disturb you',
+        ar: 'لن يزعجك أحد',
+    },
+    'Housekeeping on the way': {
+        en: 'Housekeeping on the way',
+        ar: 'ستأتي خدمة الغرفة قريباً',
+    },
+    'Make it cooler': {
+        en: 'Make it cooler',
+        ar: 'إجعل الغرفة أبرد',
+    },
+    'Make it warmer': {
+        en: 'Make it warmer',
+        ar: 'إجعل الغرفة أدفأ',
+    },
+    'Cooling down to': {
+        en: 'Cooling down to',
+        ar: 'ستبرد الغرفة لتصل  إلى',
+    },
+    'Warming up to': {
+        en: 'Warming up to',
+        ar: 'ستدفأ الغرفة لتصل  إلى',
     }
 };

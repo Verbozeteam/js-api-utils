@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "/Users/hasan/Library/Arduino15/packages/esp8266/tools/**",
+                "/Users/hasan/Library/Arduino15/packages/esp8266/hardware/esp8266/2.4.0/**"
+            ],
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ],
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}

@@ -191,23 +191,18 @@ class ConfigManagerClass {
         }
 
         I18n.resetTranslations();
-        if (this.config.translations) {
+        if (this.config && this.config.translations)
             for (var k in this.config.translations)
                 I18n.addTranslations(k, this.config.translations[k]);
-        }
-        /* no translation provided in config -- fallback to English */
-        else {
-            I18n.addSupportedLanguages({'en': true})
-        }
     }
 
-    setThingState(id: string, partialState: Object, send_socket: boolean, cache_state: boolean) {
+    setThingState(id: string, partialState: Object, send_socket: boolean, cache_state?: boolean) {
         if (send_socket === undefined)
             send_socket = true;
         return this.setThingsStates({[id]: partialState}, send_socket, cache_state);
     }
 
-    setThingsStates(idToState: Object, send_socket: boolean, cache_state: boolean) {
+    setThingsStates(idToState: Object, send_socket: boolean, cache_state?: boolean) {
         if (send_socket === undefined)
             send_socket = true;
         if (cache_state === undefined)
@@ -249,9 +244,9 @@ class ConfigManagerClass {
 
         if ('config' in update) {
             this.setConfig(update.config);
-            if (this.config) {
-                this._onConfigReceived();
-                for (var c = 0; c < this._configChangeCallbacks.length; c++)
+            this._onConfigReceived();
+            for (var c = 0; c < this._configChangeCallbacks.length; c++) {
+                if (this.config)
                     this._configChangeCallbacks[c](this.config);
             }
             delete update.config;
