@@ -116,10 +116,10 @@ class WebSocketCommunication {
 
     flushThingsStateBuffer() {
         // console.log('flushThingsStateBuffer', this._things_state_buffer);
-        const state: Array<Object> = Object.values(this._things_state_buffer);
+        const st: Array<any> = Object.values(this._things_state_buffer);
 
-        for (var i = 0; i < state.length; i++) {
-            this.sendMessage(state[i]);
+        for (var i = 0; i < st.length; i++) {
+            this.sendMessage(st[i]);
         }
 
         this._things_state_buffer = {};

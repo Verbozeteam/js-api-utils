@@ -149,7 +149,7 @@ class SocketCommunicationClass {
         this._SocketModule.discoverDevices();
     }
 
-    setAuthenticationToken(token) {
+    setAuthenticationToken(token: string) {
         this._authenticationData.token = token;
         if (token && token.length > 0) {
             this._onRequireAuthentication(false);
@@ -157,7 +157,7 @@ class SocketCommunicationClass {
         }
     }
 
-    setAuthenticationPassword(pw) {
+    setAuthenticationPassword(pw: string) {
         this._authenticationData.token = UUID.v4();
         this._authenticationData.password = pw;
         this._SocketModule.startConnecting();
@@ -168,7 +168,7 @@ class SocketCommunicationClass {
         this._SocketModule.startConnecting();
     }
 
-    setSSLKey(key, cert, password) {
+    setSSLKey(key: ?string, cert: ?string, password: ?string) {
         this._SocketModule.setSSLKey(key, (cert ? cert : "") + "\n" + this._middleware_certificate, password);
         this._isUsingSSL = true;
     }
