@@ -48,9 +48,9 @@ export type MiddlewareUpdateType = {
     config: ConfigType,
 };
 
-export type ConfigChangeCallbackType = (ConfigType) => any;
+export type ConfigChangeCallbackType = (config: ConfigType) => any;
 
-export type ThingStateChangeCallbackType = (ThingMetadataType, ThingStateType) => any;
+export type ThingStateChangeCallbackType = (meta: ThingMetadataType, state: ThingStateType) => any;
 
 type LegacyNameType = {
     en: string,
@@ -235,6 +235,10 @@ class ConfigManagerClass {
                     if (id in this._thingStateChangeCallbacks) {
                         for (var i = 0; i < this._thingStateChangeCallbacks[id].length; i++)
                             this._thingStateChangeCallbacks[id][i](this.thingMetas[id], this.things[id]);
+                    }
+                    if ('__all' in this._thingStateChangeCallbacks) {
+                        for (var i = 0; i < this._thingStateChangeCallbacks.__all.length; i++)
+                            this._thingStateChangeCallbacks.__all[i](this.thingMetas[id], this.things[id]);
                     }
                     if (category in this._categoryStateChangeCallbacks) {
                         for (var i = 0; i < this._categoryStateChangeCallbacks[category].length; i++)
