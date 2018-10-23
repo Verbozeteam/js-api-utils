@@ -28,6 +28,11 @@ export type RoomType = {
     groups: Array<GroupType>,
 };
 
+export type OrderType = {
+    id: number,
+    name: string
+}
+
 export type TranslationsType = {
     [string]: {
         en: string,
