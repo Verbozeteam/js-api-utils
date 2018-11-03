@@ -150,5 +150,9 @@ export const panel_translations = {
     'Please insert the room\'s key card': {
         en: 'Please insert the room\'s key card',
         ar: 'الرجاء إدخال بطاقة الغرفة',
-    }
+    },
+    '(Slide to dim)': {
+        en: '(Slide to dim)',
+        ar: '(حرك لتغيير شدة الإضاءة)',
+    },
 };
