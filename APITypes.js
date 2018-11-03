@@ -8,6 +8,7 @@ export type Room = {
     id: string,
     name: string,
     floor?: string,
+    identifier: string
 };
 
 export type CreatedToken = {
@@ -15,5 +16,5 @@ export type CreatedToken = {
 };
 
 export type ContactUs = {
-	success: string,
+    success: string,
 };

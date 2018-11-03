@@ -6,7 +6,7 @@ import * as APITypes from './APITypes';
 
 export class APICallerClass {
     __extraHeaders : {[string]: string} = {
-        authorization: 'token 89640ba943f949a7c766defff8b315263a62efae',
+        Authorization: '',
         'X-CSRFToken': '',
     };
 
@@ -35,5 +35,12 @@ export class APICallerClass {
 
     setCSRFToken (token: string) {
         this.__extraHeaders['X-CSRFToken'] = token;
+    }
+    setToken(token: string) {
+        this.__extraHeaders['Authorization'] = 'Token ' + token;
+    }
+
+    requestToken(success: (APITypes.CreatedToken) => any, failure?: (APITypes.ErrorType) => any, requestData?: Object) {
+        this.__makeRequest('post', '/api/tokens/', {data: requestData}, success, failure);
     }
 };

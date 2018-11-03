@@ -17,7 +17,7 @@ class RoomConfigManagerClass {
     _configChangeCallbacks: Array<RoomConfigChangeCallbackType> = [];
     _thingStateChangeCallbacks: Array<RoomThingStateChangeCallbackType> = [];
 
-    _configManagers: {[string]: ConfigManagerClass}; // room name -> config manager
+    _configManagers: {[string]: ConfigManagerClass} = {}; // room name -> config manager
 
     initialize(socketLibrary: Object) {
         this._SocketLibrary = socketLibrary;
